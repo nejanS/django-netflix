@@ -1,0 +1,17 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<div class="mb-5" style="margin-top: 110px !important; margin: 0 100px;">
+    <h1 class="text-light">Listem</h1> 
+    <ul id="my-list">
+        {% for mylist in mylist %}
+            <li>{{ mylist.card.title }}</li>
+            <!-- Ekstra içerik veya kart detayları burada gösterilebilir -->
+        {% endfor %}
+    </ul>
+</div>
+
+{% endblock body %}
+

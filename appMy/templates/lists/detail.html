@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+{% load static %}
+
+
+
+{% block body %}
+    <!-- Detay Sayfası -->
+<div class="container">
+    <div>
+        <img src="" alt="">
+        <div>
+            <h2>Başlık</h2>
+            <h5>Kategori</h5>
+            <p>Açıklama</p>
+
+        </div>
+    </div>        
+</div>
+{% endblock body %}
+    
+
+
+
+
+
+<!-- <section class="detay">
+    <div class="container">
+        <h1>{{ detay.baslik }}</h1>
+        {% for resim in detay.resim_set.all|slice:":3" %}
+        <img src="{% static 'images/' %}{{ resim }}" alt="" />
+        {% endfor %}
+        {{ detay.icerik|truncatewords:"500" }}...
+        <p><span>Yazan : </span>{{ detay.yazar }} | <span>Tarihi : </span
+            >{{ detay.tarih }}</p>
+            <a href="#"><i class="fa fa-folder"></i> {{ detay.kategori }}</a>
+            {% if detay.tags %}
+            {% for tag in detay.tags.split(',') %}
+            <a href="#"><i class="fa fa-tag"></i> {{ tag }}</a>
+            {% endfor %}
+            {% endif %}
+    </div>
+</section> -->

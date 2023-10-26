@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="en">
+{% load static %}
+<head>
+   <meta charset="UTF-8">
+   <meta http-equiv="X-UA-Compatible" content="IE=edge">
+   <meta name="viewport" content="width=device-width, initial-scale=1.0">
+   <title>Filmler</title>
+   <!-- Bootstrap -->
+   <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-0evHe/X+R7YkIZDRvuzKMRqM+OrBnVFBL6DOitfPri4tjfHxaWutUpFmBp4vmVor" crossorigin="anonymous">
+
+   <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+    <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+   <!-- My CSS -->
+   <link rel="stylesheet" href="{% static 'style.css' %}">
+   
+   {% block head %}
+      
+   {% endblock head %}
+   <style>
+      .text-bg-error{
+         background-color: rgb(228, 0, 0);
+         color: white;
+      }
+   </style>
+</head>
+<body>
+   
+   
+   <div class="position-fixed" style="bottom: 30px; right: 30px; z-index: 1000;">
+      {% for i in messages %}
+      <div class="toast align-items-center text-bg-{{ i.tags }} border-0 show position-relative my-2" role="alert" aria-live="assertive" aria-atomic="true">
+         <div class="d-flex">
+            <div class="toast-body">
+               {{ i }}
+            </div>
+            <button type="button" class="btn-close btn-close-white me-2 m-auto" data-bs-dismiss="toast"
+               aria-label="Close"></button>
+         </div>
+      </div>
+      {% endfor %}
+   </div>
+         
+         
+      
+   
+   {% block nonheader %}
+   {% include 'partials/_navbar.html' %}
+      
+   {% endblock nonheader %}
+      
+   
+   {% block body %}
+      
+   {% endblock body %}
+      
+   {% include 'partials/_footer.html' %}
+  
+
+   <!-- addlist icons -->
+    <script>
+      const addlist = document.querySelectorAll(".addlist");
+      addlist.forEach(button => {
+        button.addEventListener("click", event => {
+          button.classList.toggle("active");
+          if (button.classList.contains("active")) {
+            button.innerHTML = `
+              <svg xmlns="http://www.w3.org/2000/svg" fill="currentColor" class="bi bi-check-lg" viewBox="0 0 14 14">
+                <path d="M12.736 3.97a.733.733 0 0 1 1.047 0c.286.289.29.756.01 1.05L7.88 12.01a.733.733 0 0 1-1.065.02L3.217 8.384a.757.757 0 0 1 0-1.06.733.733 0 0 1 1.047 0l3.052 3.093 5.4-6.425a.247.247 0 0 1 .02-.022Z"/>
+              </svg>`;
+          } else {
+            button.innerHTML = "+";
+          }
+        });
+      });
+
+      
+      const addMyList = document.querySelectorAll(".add-to-list");
+      const myList = document.getElementById("my-list");
+  
+      addMyList.forEach(button => {
+          button.addEventListener("click", event => {
+              const cardId = button.getAttribute("data-card-id");
+              
+              const cardContent = document.querySelector(`.card[data-card-id="${cardId}"]`);
+              const clonedCard = cardContent.cloneNode(true);
+              myList.appendChild(clonedCard);
+          });
+      });
+
+    </script>
+    
+   <!-- JavaScript Bundle with Popper -->
+   <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.2.0-beta1/dist/js/bootstrap.bundle.min.js"
+   integrity="sha384-pprn3073KE6tl6bjs2QrFaJGz5/SUsLqktiwsUTF55Jfv3qYSDhgCecCxMW52nD2" crossorigin="anonymous"></script>
+</body>
+
+</html>
